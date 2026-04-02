@@ -4,57 +4,54 @@ description: Applies Steelbore's official brand colors and typography to any sor
 license: GPL-3.0-or-later
 ---
 
-# Steelbore Brand Styling
+# Steelbore Brand Guidelines
 
-## Overview
+> **Source of truth:** The Steelbore Standard v1.0 (§8 Colors, §9 Typography).
+> All values here are canonical. Do not use any other color or font values for Steelbore artifacts.
 
-To access Steelbore's official brand identity and style resources, use this skill.
+## Color Palette (WCAG 2.1 AA Compliant)
 
-**Keywords**: branding, corporate identity, visual identity, post-processing, styling, brand colors, typography, Steelbore brand, visual formatting, visual design
+All colors are verified for contrast against the Void Navy (`#000027`) background.
 
-## Brand Guidelines
+| Token          | Hex       | RGB                | Role                          |
+|----------------|-----------|--------------------|-------------------------------|
+| Void Navy      | `#000027` | RGB(0, 0, 39)      | **Background / Canvas**       |
+| Molten Amber   | `#D98E32` | RGB(217, 142, 50)  | Primary Text / Active Readout |
+| Steel Blue     | `#4B7EB0` | RGB(75, 126, 176)  | Primary Accent / Structural   |
+| Radium Green   | `#50FA7B` | RGB(80, 250, 123)  | Success / Safe Status         |
+| Red Oxide      | `#FF5C5C` | RGB(255, 92, 92)   | Warning / Error Status        |
+| Liquid Coolant | `#8BE9FD` | RGB(139, 233, 253) | Info / Links                  |
 
-### Colors
+**`#000027` (Void Navy) is the mandatory background for ALL Steelbore surfaces** —
+documents, terminals, editor themes, application UIs. No alternative background is permitted.
 
-**Main Colors:**
+## Typography
 
-- Background: `#000027` - Primary dark background (Midnight Navy)
-- Foreground: `#F0F0F0` - Main text color
-- Tool Window: `#142E46` - Secondary background/borders
+Only FOSS-licensed fonts are permitted. Acceptable licenses: OFL, Apache 2.0, Ubuntu Font License, CC0-1.0.
 
-**Accent Colors:**
+| Context        | Font              | License | Source       |
+|----------------|-------------------|---------|--------------|
+| Headings       | Share Tech Mono   | OFL     | Google Fonts |
+| Body / Code    | Inconsolata       | OFL     | Google Fonts |
+| Fallback       | monospace (system)| N/A     | System       |
 
-- Orange: `#FE6B00` - Primary brand accent (Steel Orange)
-- Blue: `#3B82F6` - Secondary accent
-- Green: `#10B981` - Success/String accent
+Never use proprietary fonts. Outfit, Inter, Roboto, and similar non-OFL fonts are **not permitted**.
 
-### Typography
+## Document Creation (DOCX / PDF)
 
-- **Headings**: Outfit (with Inter fallback)
-- **Body Text**: Roboto (with Sans-serif fallback)
-- **Note**: These fonts are selected for a premium, modern feel.
+For full document styling rules, load the `steelbore-document-format` skill.
+Quick reference:
 
-## Features
+- **Page background:** `#000027` (Void Navy) — mandatory, non-negotiable
+- **Page size:** ISO A4 (210 × 297 mm)
+- **Body text:** Inconsolata, 11 pt, Molten Amber `#D98E32`
+- **H1:** Share Tech Mono, 16 pt, bold, Steel Blue `#4B7EB0`
+- **H2:** Share Tech Mono, 14 pt, bold, Radium Green `#50FA7B`
+- **H3:** Share Tech Mono, default size, italic, Liquid Coolant `#8BE9FD`
+- **Links:** Liquid Coolant `#8BE9FD` (unvisited), Steel Blue `#4B7EB0` (visited)
 
-### Smart Color Application
+## UI / Visual Design
 
-- Applies Steelbore palette for a deep-navy, premium dark mode.
-- Uses `#FE6B00` for critical UI focus and key emphasis.
-- Ensures high contrast and readability with `#F0F0F0` text.
-
-### Document Creation (DOCX / PDF)
-
-- **Page Background**: Always `#000027` — non-negotiable.
-- **Page Size**: ISO A4 (210 × 297 mm).
-- **Text Color**: `#F0F0F0` for body text, `#FE6B00` for headings and emphasis.
-- These rules apply to any Word DOCX or PDF artifact produced under Steelbore branding.
-
-### Typography Management
-
-- Consistent usage of "Outfit" for high-impact bold headings.
-- "Roboto" for clean, legible body text across all components.
-
-### UI Consistency
-
-- Leverages Steelbore project standards for UI elements.
-- Maintains visual unity across IDEs, terminals, and CLI tools.
+- Apply the palette to Material Design components (the required UI system for Steelbore GUIs).
+- All new color pairings must pass WCAG 2.1 Level AA contrast verification before adoption.
+- For IDE and terminal themes, load the `steelbore-theme-factory` skill.
