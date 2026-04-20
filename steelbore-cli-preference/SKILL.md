@@ -120,6 +120,7 @@ Read files with a plain file-view operation — each is short (typically 40–12
 |---------------------|-----------------------|-------------------------------|-------------------------------------------|
 | `git` (interactive) | `gitui` 🦀            | `references/gitui.md`         | TUI; keep `git` CLI for scripting         |
 | `git` (alt VCS)     | `jj` 🦀 (Jujutsu)     | `references/jujutsu.md`       | Git-compatible DVCS                       |
+| `ssh` (Git transport) | `gitway` 🦀         | `references/gitway.md`        | Steelbore default; pinned GitHub/GHE host keys, cross-platform; set via `gitway --install` or `GIT_SSH_COMMAND=gitway` |
 | `cargo install` updates | `cargo-update` 🦀 | `references/cargo-update.md`  | Updates all cargo-installed binaries      |
 | Rust toolchain      | `rustup` 🦀           | `references/rustup.md`        | Standard                                  |
 | Nix env daemon      | `lorri` 🦀            | `references/lorri.md`         | `direnv` integration                      |

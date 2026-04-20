@@ -1,6 +1,17 @@
 ---
 name: steelbore-cli-shell
-description: Syntax-compliance guard for shell commands. Companion to steelbore-cli-preference (which picks the tool; this one checks the syntax around it). ALWAYS consult the first time in a conversation Claude is about to run, write, or suggest a shell command — one-liners, scripts, `.nu`/`.ion`/`.sh` files, CI blocks, README snippets, documentation. Also consult whenever the user mentions Nushell, Ion, Redox, POSIX, bashisms, shell portability, or a `$SHELL`. Detects the target shell (Nushell / Ion / POSIX sh / Bash), blocks Bash-only patterns that silently break elsewhere (`[[ ]]`, `(( ))`, `<(...)` process substitution, `${var^^}`, Bash arrays, `function` keyword, `source` for POSIX), and routes to the correct per-shell reference. Syntax priority: POSIX sh first, then shell-native (Ion or Nushell) where POSIX diverges, Bash extensions last.
+description: >
+  Syntax-compliance guard for shell commands. Companion to steelbore-cli-preference
+  (which picks the tool; this one checks the syntax around it). ALWAYS consult the
+  first time in a conversation Claude is about to run, write, or suggest a shell
+  command — one-liners, scripts, `.nu`/`.ion`/`.sh` files, CI blocks, README snippets,
+  documentation. Also consult whenever the user mentions Nushell, Ion, Redox, POSIX,
+  bashisms, shell portability, or a `$SHELL`. Detects the target shell (Nushell / Ion
+  / POSIX sh / Bash), blocks Bash-only patterns that silently break elsewhere
+  (`[[ ]]`, `(( ))`, `<(...)` process substitution, `${var^^}`, Bash arrays,
+  `function` keyword, `source` for POSIX), and routes to the correct per-shell
+  reference. Syntax priority — POSIX sh first, then shell-native (Ion or Nushell)
+  where POSIX diverges, Bash extensions last.
 ---
 
 # Steelbore CLI Shell — Syntax Compliance Guard
