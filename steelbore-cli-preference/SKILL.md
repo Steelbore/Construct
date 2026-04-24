@@ -38,12 +38,41 @@ This applies to Bash, POSIX sh, Nushell, Ion, Brush, PowerShell, CI YAML,
 Dockerfiles, Makefiles, `just` recipes, inline code examples in docs — anywhere
 a command appears.
 
+If §3 has no specific row for the legacy tool, apply the cascading fallback in
+§1.5 (`uutils` for GNU coreutils, Brush for Bash-only scripts).
+
 ### Shell-syntax awareness
 
 Mohamed's primary shells are **Nushell** and **Ion**. Some command patterns
 (piping into `xargs`, command substitution `$(…)`, `&&`/`||` chaining) behave
 differently in those shells. When in doubt, prefer the portable POSIX form,
 but flag it if the user is clearly working inside a specific non-Bash shell.
+
+---
+
+## §1.5 — Cascading Fallback
+
+Preferred tools are listed in §3, but the agent will sometimes face a legacy
+tool that has no explicit row, or a context where a shell has to be chosen.
+In both cases apply the cascade below — **always go as far up the list as
+possible** before dropping to the next tier.
+
+### Shells (when the AI picks or emits shell syntax)
+1. **Nushell** 🦀 or **Ion** 🦀 — both are Mohamed's primaries, both are Rust.
+   Default to one of these for any new script, one-liner, or code example.
+2. **Brush** 🦀 — only when Bash-compatibility is strictly required (e.g. a
+   script must run under a `bash` interpreter and Nushell/Ion aren't options).
+3. **Plain Bash / POSIX `sh`** — last resort, only when the target environment
+   hard-requires it (CI runner defaults, portability to unknown systems).
+
+### GNU utilities (when substituting a legacy coreutils binary)
+1. **Specific Rust alternative from §3** — `rg`, `fd`, `eza`, `bat`, `sd`,
+   `procs`, `dust`, `jaq`, etc. Always check §3 first.
+2. **`uutils` (`coreutils`)** 🦀 — fallback umbrella for any GNU coreutils
+   binary (`cp`, `mv`, `rm`, `mkdir`, `sort`, `uniq`, `head`, `tail`, `wc`,
+   `tr`, …) that has no named Rust alternative above.
+3. **Plain GNU coreutils** — only when `uutils` hasn't implemented the
+   specific flag or behaviour required.
 
 ---
 
@@ -90,7 +119,7 @@ Read files with a plain file-view operation — each is short (typically 40–12
 | `make`           | `just` 🦀             | `references/just.md`          | `Justfile`, not `Makefile`                |
 | `cloc` / `wc -l` | `tokei` 🦀            | `references/tokei.md`         | Language-aware counting                   |
 | `fdupes`         | `fclones` 🦀          | `references/fclones.md`       | Parallel duplicate finder                 |
-| coreutils        | `uutils` 🦀 (`coreutils`)| `references/uutils.md`     | System-wide replacement possible          |
+| coreutils (fallback) | `uutils` 🦀 (`coreutils`)| `references/uutils.md`  | **Fallback for any GNU coreutils binary not listed above.** Drop-in for `cp`, `mv`, `rm`, `mkdir`, `sort`, `uniq`, `head`, `tail`, `wc`, `tr`, etc. |
 | `busybox`        | `rustybox` 🦀         | `references/rustybox.md`      | 100% Rust BusyBox clone                   |
 | project cleanup  | `kondo` 🦀            | `references/kondo.md`         | Clears `target/`, `node_modules`, etc.    |
 
@@ -167,9 +196,9 @@ Read files with a plain file-view operation — each is short (typically 40–12
 
 | Legacy            | Prefer                | Ref file                      | Notes                                     |
 |-------------------|-----------------------|-------------------------------|-------------------------------------------|
-| `bash` (shell)    | `nu` 🦀 (Nushell)     | `references/nushell.md`       | Data-oriented; **Mohamed's primary shell**|
-| `bash` (compat)   | `brush` 🦀            | `references/brush.md`         | Bash-compatible Rust shell                |
-| system shell      | `ion` 🦀              | `references/ion.md`           | Redox OS shell; **Mohamed's primary shell**|
+| `bash` (primary)   | `nu` 🦀 (Nushell)    | `references/nushell.md`       | **Primary.** Data-oriented; Mohamed's default. |
+| `bash` (primary)   | `ion` 🦀             | `references/ion.md`           | **Primary.** Rust shell; Redox default; co-primary with Nushell. |
+| `bash` (fallback)  | `brush` 🦀           | `references/brush.md`         | **Fallback only** — Bash-compatible Rust shell; use only when Bash compat is strictly required. |
 | PS1 prompt        | `starship` 🦀         | `references/starship.md`      | Cross-shell prompt                        |
 | shell history     | `atuin` 🦀            | `references/atuin.md`         | SQLite-backed, synced                     |
 | `tmux`/`screen`   | `zellij` 🦀           | `references/zellij.md`        | Layouts, plugins                          |
