@@ -29,6 +29,7 @@ the rules re-attached to every prompt.
 |-------|---------|
 | [`nix-shell-provisioner`](nix-shell-provisioner/) | Use `nix-shell` for transient tool provisioning (preferred over `pip`, `npm -g`, `apt`, `brew`). |
 | [`rust-guidelines`](rust-guidelines/) | Enforces Microsoft Pragmatic Rust Guidelines before any `.rs` edit. |
+| [`steelbore-agentic-cli`](steelbore-agentic-cli/) | Agent-facing UX layer for Steelbore CLIs — pairs with `steelbore-cli-standard`. |
 | [`steelbore-brand-guidelines`](steelbore-brand-guidelines/) | Applies Steelbore's official colors and typography to artifacts. |
 | [`steelbore-cli-preference`](steelbore-cli-preference/) | Modern CLI substitutions: `eza` for `ls`, `rg` for `grep`, `gitway` for Git SSH, etc. |
 | [`steelbore-cli-standard`](steelbore-cli-standard/) | Enforces the Steelbore Dual-Mode Self-Documenting CLI Standard (SFRS v1.0.0) on every CLI. |
