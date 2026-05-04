@@ -1,9 +1,9 @@
 ---
 name: steelbore-cli-preference
 description: >
-  Enforces Steelbore's CLI tool preferences. Whenever Claude is about to
+  Enforces Steelbore's CLI tool preferences. Whenever an agent is about to
   generate, run, or recommend a shell command — in any context, including
-  bash snippets, scripts, CI, docs, or agentic tool use — Claude must first
+  bash snippets, scripts, CI, docs, or agentic tool use — the agent must first
   check the command-mapping table in this skill and substitute the preferred
   alternative for any legacy tool that has one. Examples: `eza` instead of
   `ls`, `bat` for `cat`, `rg` for `grep`, `fd` for `find`, `jaq` for `jq`,
@@ -25,7 +25,7 @@ website: https://Steelbore.com/
 **Copyright:** (c) 2026 Mohamed Hammad | **License:** GPL-3.0-or-later
 **Website:** [https://Steelbore.com/](https://Steelbore.com/)
 
-This skill makes Claude default to the Steelbore-preferred CLI/TUI stack
+This skill makes the agent default to the Steelbore-preferred CLI/TUI stack
 (primarily Rust, with curated Zig / Go / Python entries where best-in-class)
 instead of reflexively reaching for the POSIX/GNU tools it was trained on.
 
@@ -265,7 +265,7 @@ Read files with a plain file-view operation — each is short (typically 40–12
 
 | Use case              | Prefer                | Ref file                      | Notes                                     |
 |-----------------------|-----------------------|-------------------------------|-------------------------------------------|
-| Claude agent          | `claude` ⚠️ (Claude Code) | `references/claude-code.md` | TypeScript; Mohamed's primary agent       |
+| Claude Code agent     | `claude` ⚠️ (Claude Code) | `references/claude-code.md` | TypeScript; Mohamed's primary agent       |
 | multi-LLM REPL        | `aichat` 🦀           | `references/aichat.md`        | Universal                                 |
 | Gemini CLI            | `gemini` 🦀           | `references/gemini-cli.md`    | —                                         |
 | OpenAI Codex          | `codex` ⚠️            | `references/codex.md`         | TypeScript                                |

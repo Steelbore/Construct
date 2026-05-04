@@ -69,7 +69,7 @@ discoverability). Never sacrifice one for the other; render twice.
 
 The Mei Park framing applies: **human DX optimizes for discoverability and
 forgiveness; agent DX optimizes for predictability and defense-in-depth.**
-Hold both lenses simultaneously. When in doubt, ask: "Would Claude Code
+Hold both lenses simultaneously. When in doubt, ask: "Would an agent
 hallucinate here? Would `gh` ship this?"
 
 ---
@@ -83,7 +83,7 @@ repository root, on day one, before business logic:
 | File | Primary consumer | Contents |
 |------|------------------|----------|
 | `AGENTS.md` | Generic agents (Codex CLI, Cursor, Aider, OpenCode) | Coding conventions, test/build commands, forbidden patterns, repository invariants |
-| `CLAUDE.md` | Claude Code | Same as AGENTS.md, plus Claude-specific context (skills referenced, MCP servers expected, tool preferences) |
+| `CLAUDE.md` | Claude Code agent | Same as AGENTS.md, plus Claude Code–specific context (skills referenced, MCP servers expected, tool preferences) |
 | `SKILL.md` | Steelbore Skills + CLI-Anything + `gws` | YAML frontmatter (name, description, license) + capability surface for the CLI itself |
 | `CONTRIBUTING.md` | Human contributors | Onboarding, dev environment setup, PR conventions |
 

@@ -165,7 +165,7 @@ Use when:
 
 ## Directory Structure
 ```
-~/.claude/skills/rust-guidelines/
+~/.agents/skills/rust-guidelines/
 ├── SKILL.md
 └── references/
     ├── 01_ai_guidelines.md
