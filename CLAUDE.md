@@ -50,6 +50,45 @@ Verify with `unzip -l <name>.zip` before committing. After editing any file
 inside a skill directory, **rebuild both bundles in the same commit** — a stale
 bundle ships broken content to every agent that installs from the zip.
 
+## Workflow: every skill-directory change
+
+The bundles are the install surface. A bundle that lags its `SKILL.md` /
+`references/` / `assets/` ships broken content to every consumer. The contract
+is mechanical — apply it after **any** edit inside a `<skill-name>/` directory:
+
+1. **Rebuild both bundles** for the changed skill:
+   ```sh
+   rm -f <name>.zip <name>.skill
+   zip -qr  <name>.zip   <name>/SKILL.md <name>/LICENSE <name>/references
+   zip -qrD <name>.skill <name>/SKILL.md <name>/LICENSE <name>/references
+   ```
+   Add `<name>/assets` to both lines if the skill has an `assets/` dir.
+   Omit `<name>/LICENSE` or `<name>/references` if the skill doesn't have them
+   (`steelbore-standard` is SKILL.md-only, for example).
+2. **Stage** the skill directory **and** both bundles in the same commit —
+   never separately.
+3. **Commit with UTC timestamps**:
+   ```sh
+   TZ=UTC GIT_COMMITTER_DATE="$(TZ=UTC date)" \
+     git commit --date "$(TZ=UTC date)" -m "..."
+   ```
+   Steelbore Standard §12.2 forbids offset notation (`+0300`, `+00:00`); only
+   `Z` / `+0000` is permitted. Signing is on globally
+   (`commit.gpgsign=true`, `gpg.format=ssh`, `user.signingkey=~/.ssh/id_ed25519.pub`)
+   — no extra flag needed.
+4. **Push** to `origin/main` with no confirmation prompt — this repo is
+   pre-authorised for auto-push on skill-directory changes.
+
+If multiple skills changed in one turn, rebuild **all** of their bundles in the
+same commit. Never let `git status` show a skill-dir change without its
+matching bundle change.
+
+`git log -1 --show-signature` may report "No signature" locally because
+`~/.ssh/allowed_signers` isn't populated; this is a verifier-side gap, not a
+signing failure. GitHub validates the SSH signature independently and shows
+"Verified" if the public key is registered as a **Signing** key in GitHub
+account settings (Authentication-only keys won't validate signatures).
+
 ## Editing rules specific to this repo
 
 - **README §2 catalogue is load-bearing.** When adding a skill directory, add a
@@ -66,9 +105,9 @@ bundle ships broken content to every agent that installs from the zip.
 ## Installation (what consumers do)
 
 ```sh
-git clone git@github.com:Steelbore/skills.git ~/.claude/skills
-git clone git@github.com:Steelbore/skills.git ~/.gemini/skills
-git clone git@github.com:Steelbore/skills.git ~/.codex/skills
+git clone git@github.com:Steelbore/Construct.git ~/.claude/skills
+git clone git@github.com:Steelbore/Construct.git ~/.gemini/skills
+git clone git@github.com:Steelbore/Construct.git ~/.codex/skills
 ```
 
 The SSH remote is configured for [Gitway](https://github.com/Steelbore/Gitway).

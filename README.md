@@ -1,10 +1,10 @@
 <!--
-  README for the Steelbore `skills` repository.
+  README for the Steelbore `Construct` repository.
   Audience: humans browsing on GitHub, and LLM agents loading these skills.
   Maintenance: keep the skill list in §2 aligned with the top-level directories.
 -->
 
-# Steelbore Skills
+# Steelbore Construct
 
 A collection of **Claude / LLM agent skills** used across the Steelbore
 ecosystem. Each top-level directory is a self-contained skill — a `SKILL.md`
@@ -36,7 +36,7 @@ the rules re-attached to every prompt.
 | [`steelbore-cli-shell`](steelbore-cli-shell/) | Syntax-compliance guard for Nushell / Ion / POSIX / Bash commands. |
 | [`steelbore-document-format`](steelbore-document-format/) | Applies Steelbore theme and formatting to documents. |
 | [`steelbore-missing-pkg`](steelbore-missing-pkg/) | Handles missing-package situations in the Steelbore workflow. |
-| [`steelbore-standard`](steelbore-standard/) | Authoritative compliance reference (The Steelbore Standard v1.0). |
+| [`steelbore-standard`](steelbore-standard/) | Authoritative compliance reference (The Steelbore Standard v1.1). |
 | [`steelbore-theme-factory`](steelbore-theme-factory/) | Generates Steelbore-compliant themes for IDEs and terminals. |
 
 <!-- §3 — Layout convention -->
@@ -63,13 +63,13 @@ Clone into any of the supported agent skill directories:
 
 ```sh
 # Claude Code
-git clone git@github.com:Steelbore/skills.git ~/.claude/skills
+git clone git@github.com:Steelbore/Construct.git ~/.claude/skills
 
 # Gemini CLI
-git clone git@github.com:Steelbore/skills.git ~/.gemini/skills
+git clone git@github.com:Steelbore/Construct.git ~/.gemini/skills
 
 # Codex
-git clone git@github.com:Steelbore/skills.git ~/.codex/skills
+git clone git@github.com:Steelbore/Construct.git ~/.codex/skills
 ```
 
 The SSH remote is configured to work with
