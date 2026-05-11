@@ -28,7 +28,7 @@ website: https://Steelbore.com/
 
 Sibling skill to `steelbore-cli-preference`. That skill decides **which tool** to run (`rg` over `grep`, `eza` over `ls`); this skill makes sure the **syntax around it** parses in the target shell.
 
-Four non-Bash shells matter most here: **Nushell** (Mohamed's primary interactive + Lattice/Steelbore default), **Ion** (Redox default, secondary), **PowerShell** (Windows-first, cross-platform), and **ash** (Alpine Linux / embedded POSIX). Nushell and Ion are Rust-written and neither accepts Bash scripts as-is. Bashisms that "always worked" in Bash will fail — sometimes loudly, sometimes silently — in any of them.
+Four non-Bash shells matter most here: **Nushell** (Mohamed's primary interactive + Bravais/Steelbore default), **Ion** (Redox default, secondary), **PowerShell** (Windows-first, cross-platform), and **ash** (Alpine Linux / embedded POSIX). Nushell and Ion are Rust-written and neither accepts Bash scripts as-is. Bashisms that "always worked" in Bash will fail — sometimes loudly, sometimes silently — in any of them.
 
 ## When to consult
 
@@ -52,7 +52,7 @@ Signal 5 is the only one that asks.
 3. **Explicit user mention** *(evidence)* — "in Nushell", "my Ion script", "PowerShell", "in ash", "POSIX-compatible", "bash one-liner".
 4. **Environmental inference** *(announce)* — state the assumption in a short sentence before/alongside the command, e.g. "Assuming Nushell (your primary) — say the word for Ion, PowerShell, or POSIX.":
    - `bash_tool` in an agent environment runs **Bash**. Commands executed here and now should target **POSIX** (Bash accepts all POSIX).
-   - Steelbore / Lattice / "my shell" context with no other signal → **Nushell** (Mohamed's primary). When "my shell" is used explicitly, consider offering an **Ion** secondary since Mohamed runs both.
+   - Steelbore / Bravais / "my shell" context with no other signal → **Nushell** (Mohamed's primary). When "my shell" is used explicitly, consider offering an **Ion** secondary since Mohamed runs both.
    - Redox OS context → **Ion**.
    - Windows-first or `.ps1` context → **PowerShell**.
    - Alpine Linux / Docker / embedded context → **ash** (POSIX-compliant; avoid bashisms).

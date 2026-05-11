@@ -15,7 +15,7 @@ description: >
   "agent-native", AGENTS.md, CLAUDE.md, MCP server, Claude Code,
   Codex CLI, Cursor, function calling, tips-thinking. Applies to
   every Steelbore project with a CLI (Ferrocast, Caliper, Craton,
-  Ironway, Zamak, Lattice, Mawaqit, Flux, Pulse, future).
+  Ironway, Zamak, Bravais, Mawaqit, Flux, Pulse, future).
 license: GPL-3.0-or-later
 maintainer: Mohamed Hammad <Mohamed.Hammad@Steelbore.com>
 website: https://Steelbore.com/

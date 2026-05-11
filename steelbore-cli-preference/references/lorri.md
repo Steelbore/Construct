@@ -26,4 +26,4 @@ Daemon that watches `shell.nix` / `default.nix` and keeps a cached build environ
 
 ## Gotchas
 - Requires Nix with flakes or classic; on flakes projects prefer `direnv` + `nix develop` via `use flake` in `.envrc`.
-- Lorri's upstream has slowed — newer Lattice work may prefer plain `direnv + nix-direnv`.
+- Lorri's upstream has slowed — newer Bravais work may prefer plain `direnv + nix-direnv`.

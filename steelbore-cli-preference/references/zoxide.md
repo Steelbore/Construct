@@ -27,9 +27,9 @@ Add one of these to your rc:
 
 ## Examples
 1. Jump to the last-used project directory matching `steelbore`: `z steelbore`
-2. Match on two tokens: `z lattice src`
+2. Match on two tokens: `z bravais src`
 3. Pick interactively: `zi`
-4. Preview match without jumping: `zoxide query -l lattice`
+4. Preview match without jumping: `zoxide query -l bravais`
 
 ## Gotchas
 - You must `cd` into directories first for zoxide to learn them.

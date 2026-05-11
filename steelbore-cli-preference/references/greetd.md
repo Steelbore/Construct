@@ -23,7 +23,7 @@ user = "greeter"
 | `journalctl -u greetd` | Logs |
 
 ## Examples
-1. Enable on NixOS (Lattice): `services.greetd.enable = true;` + greeter settings.
+1. Enable on NixOS (Bravais): `services.greetd.enable = true;` + greeter settings.
 2. Switch greeter: edit `default_session.command`, then restart service.
 3. Debug session-start issues: `journalctl -u greetd -b`.
 

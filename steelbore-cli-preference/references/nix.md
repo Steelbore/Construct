@@ -1,6 +1,6 @@
 # nix
 
-**Replaces:** — (Steelbore-sanctioned for Lattice) | **Language:** ⚠️ C++ | **Install:** https://nixos.org/download
+**Replaces:** — (Steelbore-sanctioned for Bravais) | **Language:** ⚠️ C++ | **Install:** https://nixos.org/download
 
 ## Purpose
 Functional/declarative package manager and build system. Reproducible dev shells, system configs (NixOS), per-project environments.
@@ -28,5 +28,5 @@ Functional/declarative package manager and build system. Reproducible dev shells
 
 ## Gotchas
 - Enable flakes once: in `nix.conf` set `experimental-features = nix-command flakes`.
-- `channels` are the legacy model; prefer flakes for new projects (per Lattice).
+- `channels` are the legacy model; prefer flakes for new projects (per Bravais).
 - Store paths live under `/nix/store`; never touch directly.

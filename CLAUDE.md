@@ -11,7 +11,7 @@ of templates/JSON. Edits are content edits; shipping is rezipping.
 
 The authoritative governance document for everything produced in this repo is
 [`steelbore-standard/SKILL.md`](steelbore-standard/SKILL.md) (The Steelbore
-Standard v1.1). Load it before any non-trivial edit — its §14 checklist is the
+Standard v1.2). Load it before any non-trivial edit — its §14 checklist is the
 audit gate.
 
 ## Skill layout (per top-level directory)
@@ -24,10 +24,10 @@ audit gate.
 └── assets/            # optional; templates, JSON catalogs, etc.
 ```
 
-Skill IDs (directory and frontmatter `name`) are **functional**, not
-metallurgical — Standard §2 reserves codenames for projects/modules/utilities,
-not for skill identifiers. The README catalogue and the directory list must
-stay in sync.
+Skill IDs (directory and frontmatter `name`) are **functional identifiers**,
+not codenames — Standard §2.2 reserves codenames for projects/modules/utilities/
+releases, not for skill identifiers. The README catalogue and the directory list
+must stay in sync.
 
 ## Bundling (.zip and .skill)
 
@@ -78,22 +78,10 @@ is mechanical — apply it after **any** edit inside a `<skill-name>/` directory
    — no extra flag needed.
 4. **Push** to `origin/main` with no confirmation prompt — this repo is
    pre-authorised for auto-push on skill-directory changes.
-5. **Fan out to local agent install dirs** so every agent CLI on this host
-   sees the pushed state:
-   ```sh
-   rsync -a --delete \
-     --exclude='.git' --exclude='.claude' --exclude='Excluded' \
-     --exclude='Chat.txt' --exclude='CLAUDE.md' --exclude='.gitignore' \
-     --exclude='*.zip' --exclude='*.skill' \
-     /steelbore/construct/ ~/.agents/skills/
-   ```
-   `~/.agents/skills/` is the canonical local install. `~/.ai/skills`,
-   `~/.agent/skills`, `~/.claude/skills`, and `~/.codex/skills` are
-   **symlinks** to it (set up once per host — see the *Local agent fan-out*
-   section below). They pick up the new content automatically; no per-target
-   rsync needed. `~/.gemini/skills` is deliberately **not** a symlink — Gemini
-   CLI scans `~/.agents/skills/` directly and would emit duplicate-skill
-   warnings if it saw both.
+
+The assistant's responsibility ends at push. **Local agent install dirs
+refresh only after Home Manager rebuilds** — see *Local agent fan-out* below.
+That rebuild is a user-initiated action; the assistant must not run it.
 
 If multiple skills changed in one turn, rebuild **all** of their bundles in the
 same commit. Never let `git status` show a skill-dir change without its
@@ -105,48 +93,42 @@ signing failure. GitHub validates the SSH signature independently and shows
 "Verified" if the public key is registered as a **Signing** key in GitHub
 account settings (Authentication-only keys won't validate signatures).
 
-## Local agent fan-out
+## Local agent fan-out (this host)
 
-A single canonical skills directory at `~/.agents/skills/` feeds every agent
-CLI on this host. Step 5 of the workflow rsyncs the repo into it; the
-per-harness conventional paths are symlinks pointing back at it.
+Local fan-out is managed by **Home Manager**, not by the assistant. Each
+per-harness skill path is a real directory provisioned by Home Manager with
+per-skill symlinks that chain through the Nix store to this repo:
 
-| Path                | Kind                       | Target              | Why |
-|---------------------|----------------------------|---------------------|-----|
-| `~/.agents/skills/` | directory (canonical)      | (content)           | Source of truth — rsync target in step 5 |
-| `~/.ai/skills`      | symlink                    | `~/.agents/skills`  | Generic AI-tool convention |
-| `~/.agent/skills`   | symlink                    | `~/.agents/skills`  | Generic single-`agent` convention |
-| `~/.claude/skills`  | symlink                    | `~/.agents/skills`  | Claude Code reads from here |
-| `~/.codex/skills`   | symlink                    | `~/.agents/skills`  | OpenAI Codex reads from here |
-| `~/.gemini/skills`  | **must not exist**         | —                   | Gemini CLI is configured to scan `~/.agents/skills/` natively; a symlink at this path would cause Gemini to enumerate every skill twice and emit duplicate-skill warnings. |
-
-### One-time setup (per host)
-
-Run once on a fresh box, or after retiring a real `~/.<harness>/skills` clone.
-If any of the four target paths is currently a real directory (e.g. from the
-README install instructions), it gets renamed aside before being replaced
-with a symlink:
-
-```sh
-mkdir -p ~/.agents
-for d in ~/.ai/skills ~/.agent/skills ~/.claude/skills ~/.codex/skills; do
-  if [ -e "$d" ] && [ ! -L "$d" ]; then
-    mv "$d" "${d}.pre-symlink.$(TZ=UTC date -u +%Y%m%dT%H%M%SZ)"
-  fi
-  mkdir -p "$(dirname "$d")"
-  ln -sfn ~/.agents/skills "$d"
-done
+```
+~/.claude/skills/<skill>
+  → /nix/store/<hash>-home-manager-files/.claude/skills/<skill>
+  → /nix/store/<hash>-hm_<skill>
+  → /steelbore/construct/<skill>
 ```
 
-Verify: `ls -la ~/.ai/skills ~/.agent/skills ~/.claude/skills ~/.codex/skills`
-should print four `... -> /home/<you>/.agents/skills` lines. `ls ~/.gemini/skills`
-should error with *No such file or directory* — if it doesn't, remove whatever
-is there before Gemini next loads.
+Paths populated by Home Manager: `~/.claude/skills/`, `~/.codex/skills/`,
+`~/.ai/skills/`, `~/.agent/skills/`. Gemini CLI's scan path is Home Manager's
+responsibility on this host as well — the assistant does not provision it.
 
-The `--delete` in step 5's rsync means anything sitting in `~/.agents/skills/`
-that isn't in the repo gets removed on the next sync. If you're prototyping a
-skill locally before adding it to the repo, keep the work tree somewhere
-**outside** `~/.agents/skills/` until it lands in `/steelbore/construct/`.
+**After a push, Home Manager must be rebuilt** before per-harness paths
+resolve to the new content. The maintainer runs the rebuild manually
+(`home-manager switch …` or the equivalent flake command); the assistant
+does **not** invoke it.
+
+Verify after rebuild:
+
+```sh
+readlink -f ~/.claude/skills/steelbore-standard
+# → /steelbore/construct/steelbore-standard
+```
+
+If the symlink still resolves into a stale `/nix/store/<old-hash>-hm_*` path
+(for example after a repo rename), the Home Manager config has not yet been
+rebuilt against the new repo path. Until it is, agents read the previous
+generation's content even though `origin/main` is current.
+
+The assistant performs no `rsync`, no symlink setup, and no
+`home-manager switch`. Its responsibility ends at `git push`.
 
 ## Editing rules specific to this repo
 

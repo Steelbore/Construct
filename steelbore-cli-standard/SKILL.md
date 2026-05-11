@@ -10,7 +10,7 @@ description: >
   envelopes, ISO 8601 UTC timestamps, UTF-8 encoding, POSIX compatibility,
   Nushell/PowerShell 7+/Ion/Bash output, and agent env vars (AI_AGENT, AGENT,
   CI, CLAUDECODE, CURSOR_AGENT, GEMINI_CLI). If a Steelbore project
-  (Ferrocast, Caliper, Craton, Ironway, Zamak, Lattice, Mawaqit, Flux, or any
+  (Ferrocast, Caliper, Craton, Ironway, Zamak, Bravais, Mawaqit, Flux, or any
   future project) has a CLI component, this skill governs it — even when the
   user does not explicitly mention the Standard. Use proactively the moment
   CLI code appears on the horizon.
@@ -33,7 +33,7 @@ an **agent-native machine-readable mode** for LLM agents, automation
 pipelines, and structured-data shells.
 
 The Standard applies to **every** Steelbore CLI binary and sub-command:
-Ferrocast, Caliper, Craton, Ironway, Zamak, Lattice, Mawaqit, Flux, and every
+Ferrocast, Caliper, Craton, Ironway, Zamak, Bravais, Mawaqit, Flux, and every
 future project exposing a command line. Prior art includes Anthropic's `ant`
 CLI (auto-TTY detection, `--format explore`, `--format json/yaml/jsonl`),
 Google's `gws` (schema + MCP bridge), GitHub's `gh`, and `kubectl` — this

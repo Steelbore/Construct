@@ -171,7 +171,7 @@ Read files with a plain file-view operation — each is short (typically 40–12
 | AUR helper          | `paru` 🦀             | `references/paru.md`          | Arch systems                              |
 | distro setup TUI    | `linutil` 🦀          | `references/linutil.md`       | Maintenance workflows                     |
 | dotfiles            | `dotter` 🦀           | `references/dotter.md`        | Templated                                 |
-| Nix                 | `nix` ⚠️              | `references/nix.md`           | Standard for Lattice                      |
+| Nix                 | `nix` ⚠️              | `references/nix.md`           | Standard for Bravais                      |
 | Flatpak             | `flatpak` ⚠️          | `references/flatpak.md`       | Sandboxed apps                            |
 | Homebrew            | `brew` ⚠️             | `references/brew.md`          | Linux/macOS fallback                      |
 | Guix                | `guix` (λ)            | `references/guix.md`          | Functional Scheme PM                      |
@@ -361,8 +361,8 @@ of The Steelbore Standard (see `steelbore-standard` skill):
 - **§4** GPL-3.0-or-later license declared in frontmatter
 - **§11** ISO 8601 dates used throughout
 - Naming: `steelbore-cli-preference` — functional prefix, not a codename
-  (metallurgical naming §2 applies to new project/module identifiers, not
-  to skill IDs)
+  (aerospace/sci-fi/AI naming §2 applies to new project/module identifiers;
+  §2.2 explicitly exempts skill IDs)
 
 ---
 

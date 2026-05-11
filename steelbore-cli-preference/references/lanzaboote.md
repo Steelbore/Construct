@@ -3,7 +3,7 @@
 **Replaces:** `sbctl`, systemd-boot without signing | **Language:** 🦀 Rust | **Install:** NixOS flake module
 
 ## Purpose
-UEFI Secure Boot for NixOS. Builds and signs bootloader + kernel images with your own Secure Boot keys. Used in Lattice.
+UEFI Secure Boot for NixOS. Builds and signs bootloader + kernel images with your own Secure Boot keys. Used in Bravais.
 
 ## Key commands
 | Command | Meaning |
