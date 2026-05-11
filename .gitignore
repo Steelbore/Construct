@@ -1,2 +1,5 @@
 # Local conversation/session exports — never commit
 Chat.txt
+
+# Per-session Claude Code worktrees (local dev state, not for the catalogue)
+.claude/worktrees/

@@ -7,38 +7,43 @@ description: >
   decisions, UI designs, naming choices, or any other artifact for a Steelbore project —
   even if the user doesn't explicitly mention the Standard. If the user mentions "Steelbore",
   a Steelbore subproject name, or asks you to work on anything in the Steelbore ecosystem,
-  consult this skill immediately. It encodes The Steelbore Standard v1.0 so you never need
+  consult this skill immediately. It encodes The Steelbore Standard v1.1 so you never need
   to ask for it or have it attached to a prompt again.
 license: GPL-3.0-or-later
 maintainer: Mohamed Hammad <Mohamed.Hammad@Steelbore.com>
 website: https://Steelbore.com/
 ---
- 
+
 # The Steelbore Standard — Compliance Reference
- 
-**Version:** 1.0 | **Date:** 2026-03-08 | **Author:** Mohamed Hammad
+
+**Version:** 1.1 | **Date:** 2026-05-06 | **Author:** Mohamed Hammad
 **Maintainer:** Mohamed Hammad | **Contact:** [Mohamed.Hammad@Steelbore.com](mailto:Mohamed.Hammad@Steelbore.com)
 **Copyright:** (c) 2026 Mohamed Hammad | **License:** GPL-3.0-or-later
 **Website:** [https://Steelbore.com/](https://Steelbore.com/)
- 
+
 This skill encodes The Steelbore Standard in full. Apply every applicable section
-to any artifact you produce for a Steelbore project. The 12-point compliance checklist
-in §13 is your audit gate — run through it mentally before finalising any output.
- 
+to any artifact you produce for a Steelbore project. The 13-point compliance checklist
+in §14 is your audit gate — run through it mentally before finalising any output.
+
+**Changelog:**
+
+- **v1.1 (2026-05-06):** Added §5 Project Posture (personal-hobby default, general-use carve-out, required posture files). Renumbered prior §5–§13 to §6–§14. Added posture bullet to compliance checklist.
+- **v1.0 (2026-03-08):** Initial release.
+
 ---
- 
+
 ## §2 — Metallurgical Naming Convention
- 
+
 All project codenames, module identifiers, and public-facing component names **must**
 come from the domain of metallurgy, materials science, or industrial forging.
- 
+
 | Category  | Examples                        | Domain                  |
 |-----------|---------------------------------|-------------------------|
 | Projects  | ZAMAK, Lattice, Steelbore       | Alloys, Crystal Structs |
 | Modules   | Crucible, Anvil, Temper         | Forging Tools           |
 | Utilities | Quench, Flux, Smelt             | Metallurgical Processes |
 | Releases  | Ingot, Billet, Bloom            | Cast Forms              |
- 
+
 **Known project registry:**
 - `Zamak` — Rust bootloader (Limine rewrite)
 - `Lattice` — NixOS flake configuration
@@ -47,16 +52,16 @@ come from the domain of metallurgy, materials science, or industrial forging.
 - `Ironway` — Rust OpenTTD rewrite
 - `Caliper` — Rust raster-to-vector tracing engine (CLI+TUI)
 - `Mawaqit` — Islamic prayer times app (Flutter + Rust CLI + libmawaqit)
- 
+
 When proposing new names (modules, utilities, releases), always draw from metallurgy.
 Reject any proposed name that doesn't fit this convention.
- 
+
 ---
- 
+
 ## §3 — Priority Hierarchy (Non-Negotiable Order)
- 
+
 A higher-numbered priority **may never compromise** a lower-numbered one.
- 
+
 ### §3.1 — Priority 1: Memory Safety
 - **Preferred language: Rust** — governed by the Steelbore Rust Guidelines.
   → Always load the `rust-guidelines` skill before writing any Rust code.
@@ -65,13 +70,13 @@ A higher-numbered priority **may never compromise** a lower-numbered one.
   - **CFI** (Control-Flow Integrity) wherever the toolchain supports it
 - Memory-Safe Languages (MSLs) are always preferred. If an MSL alternative exists,
   it must be chosen unless a documented technical exemption is filed.
- 
+
 ### §3.2 — Priority 2: Performance
 - Concurrency must be **designed-in from the start**, never bolted on retroactively.
 - Release builds must use CPU-optimized flags: `-march=native`, LTO, PGO where applicable.
 - Benchmarking is **mandatory** before and after any optimization work; regressions must
   be documented and justified.
- 
+
 ### §3.3 — Priority 3: Hardened Security
 - Kernel hardening (XanMod, grsecurity profiles) where applicable.
 - Sandboxing and privilege separation for all network-facing components.
@@ -80,17 +85,17 @@ A higher-numbered priority **may never compromise** a lower-numbered one.
   support exists. Adopt NIST-finalized PQC standards within one major release cycle.
   - Current targets: ML-KEM-768, ML-DSA-65 (as used in Ferrocast)
 - Dependency auditing: `cargo-audit` or equivalent before any third-party crate inclusion.
- 
+
 **Cardinal Rule:** Any optimization that weakens memory safety or security hardening
 **must be rejected**, no exceptions.
- 
+
 ---
- 
+
 ## §4 — Licensing & Compliance
- 
+
 - **License:** GNU General Public License, version 3 or later (`GPL-3.0-or-later`)
 - No proprietary, closed-source, or permissive-only exceptions for core project code.
- 
+
 ### SPDX Headers (mandatory on software source code files only)
 ```
 // SPDX-License-Identifier: GPL-3.0-or-later
@@ -101,56 +106,118 @@ the SPDX header/expression.
 
 **Document files** (`.odf`, `.xlsx`, `.docx`, PDF, etc.) are **exempt** from
 SPDX header requirements; the license is stated in the project root.
- 
+
 **When writing or reviewing any software source file**, check that the SPDX header is present.
 When generating new source files, always include it.
- 
+
 ---
- 
-## §5 — Platform & Systems Requirements
- 
-### §5.1 — POSIX Compliance
+
+## §5 — Project Posture
+
+Steelbore is a personal hobby project. This posture is the **default** for every
+subproject under the umbrella and is non-negotiable. Individual subprojects may
+adopt a more open posture (see §5.3) but never a more closed one.
+
+§4 defines the formal license; this section defines the **stated stance** that
+sits alongside it. License says what the user *may* do; posture says what they
+should *expect* from the maintainer.
+
+### §5.1 — Default Posture (Personal / Hobby)
+
+| Aspect         | Default                                                        |
+|----------------|----------------------------------------------------------------|
+| Audience       | Maintainer's own use case                                      |
+| Pace           | Hobby pace; no service-level commitments                       |
+| Warranty       | None — provided AS IS                                          |
+| Liability      | None — see project `NOTICE.md`                                 |
+| Contributions  | Welcome but not guaranteed to be accepted                      |
+| Forking        | Encouraged                                                     |
+| License        | GPL-3.0-or-later (formal terms govern in any conflict)         |
+
+### §5.2 — Required Posture Files (per subproject)
+
+Every Steelbore subproject repository **must** ship the following files at its
+root, derived from the canonical Steelbore templates:
+
+| File              | Purpose                                                     |
+|-------------------|-------------------------------------------------------------|
+| `README.md`       | Includes a "Project Posture" section linking to the two below |
+| `NOTICE.md`       | Full no-warranty / no-liability statement; defers to GPL-3.0-or-later for binding terms |
+| `CONTRIBUTING.md` | Contribution scope, PR-acceptance discretion, sign-off, security reporting, license-of-contributions |
+| `LICENSE`         | Verbatim GPL-3.0-or-later text (existing §4 rule)           |
+
+Customize only the project name, scope, and any project-specific carve-outs.
+
+### §5.3 — General-Use Carve-Out
+
+A subproject may declare itself **intended for general use**. When it does:
+
+- The declaration MUST appear in that subproject's `README.md` posture section.
+- The no-warranty / no-liability stance from §5.1 still applies in full —
+  general-use status changes audience and intent, **not** legal terms.
+- General-use subprojects must hold a higher release-quality bar:
+  semantic versioning, maintained `CHANGELOG.md`, deprecation policy, and a
+  documented support window for the current major version.
+
+**General-use registry** (keep in sync with §13.1 subdomain table):
+
+| Subproject   | Posture       |
+|--------------|---------------|
+| Anvil-SSH    | General-use   |
+| (all others) | Personal      |
+
+### §5.4 — Maintainer Discretion
+
+PR acceptance, feature scope, naming, architecture, and roadmap are at the
+maintainer's sole discretion. This is stated openly so contributors can
+calibrate effort accordingly. Rejection reflects fit, not quality.
+
+---
+
+## §6 — Platform & Systems Requirements
+
+### §6.1 — POSIX Compliance
 All CLI tools, daemons, and system utilities must be **POSIX-compliant**.
 Platform-specific extensions go behind feature flags and must not be required
 for core functionality.
- 
-### §5.2 — Post-Quantum Cryptography
+
+### §6.2 — Post-Quantum Cryptography
 Crypto subsystems must have migration paths to post-quantum algorithms.
 Current implementations should use hybrid schemes where library support exists.
- 
+
 ---
- 
-## §6 — Privacy-Friendly Application (PFA) Policy
- 
+
+## §7 — Privacy-Friendly Application (PFA) Policy
+
 Every Steelbore application must satisfy **all three** PFA requirements:
- 
+
 | Requirement        | Rule                                                                     |
 |--------------------|--------------------------------------------------------------------------|
 | No Tracking/No Ads | Zero advertising, tracking, analytics SDKs, or telemetry beacons        |
 | Minimal Permissions| Only essential permissions; requested lazily at point of use, never eagerly |
 | Local Storage      | User data stored locally by default; sync is strictly opt-in, E2E encrypted |
- 
+
 When reviewing or designing any feature that touches data handling, permissions,
 or networking, verify all three PFA requirements are met.
- 
+
 ---
- 
-## §7 — Key Bindings
- 
+
+## §8 — Key Bindings
+
 All interactive applications must support **both**:
- 
+
 | Scheme    | Requirement                                                              |
 |-----------|--------------------------------------------------------------------------|
 | **CUA**   | Standard bindings (Ctrl+C/X/V/Z/S) must work in all text input contexts |
 | **Vim**   | Modal editing layer (Normal / Insert / Visual mode) as opt-in feature.  |
 |           | Minimum: hjkl navigation where full Vim layer is impractical            |
- 
+
 ---
- 
-## §8 — Steelbore Color Palette (WCAG-Compliant)
- 
+
+## §9 — Steelbore Color Palette (WCAG-Compliant)
+
 The **only** permitted colors for Steelbore interfaces and documents:
- 
+
 | Token          | Hex       | RGB              | Role                        |
 |----------------|-----------|------------------|-----------------------------|
 | Void Navy      | `#000027` | RGB(0, 0, 39)    | **Background / Canvas**     |
@@ -159,62 +226,62 @@ The **only** permitted colors for Steelbore interfaces and documents:
 | Radium Green   | `#50FA7B` | RGB(80, 250, 123)| Success / Safe Status       |
 | Red Oxide      | `#FF5C5C` | RGB(255, 92, 92) | Warning / Error Status      |
 | Liquid Coolant | `#8BE9FD` | RGB(139, 233, 253)| Info / Links               |
- 
+
 **`#000027` (Void Navy) is the mandatory background for ALL Steelbore surfaces.**
 No alternative background is permitted. This is non-negotiable.
- 
+
 For document/file generation → load the `steelbore-document-format` skill.
 For IDE/terminal themes → load the `steelbore-theme-factory` skill.
- 
+
 > ⚠️ Note: The `steelbore-brand-guidelines` skill contains **outdated color and font
-> data** that conflicts with the Standard. The values in §8 and §9 of this skill are
+> data** that conflicts with the Standard. The values in §9 and §10 of this skill are
 > authoritative. Do not use the brand-guidelines skill for color or font reference.
- 
+
 ---
- 
-## §9 — Typography (FOSS-Licensed Fonts Only)
- 
+
+## §10 — Typography (FOSS-Licensed Fonts Only)
+
 Acceptable font licenses: **OFL, Apache 2.0, Ubuntu Font License, CC0-1.0**
- 
+
 | Context        | Font              | License |
 |----------------|-------------------|---------|
 | Headings       | Share Tech Mono   | OFL     |
 | Body / Code    | Inconsolata       | OFL     |
 | Fallback       | monospace (system)| N/A     |
- 
+
 Never use proprietary fonts. When suggesting or using fonts in any Steelbore artifact,
 verify they are available on Google Fonts or another FOSS-licensed repository.
- 
+
 ---
- 
-## §10 — UI/UX Design System
- 
+
+## §11 — UI/UX Design System
+
 - **Material Design** is the required component system for all graphical applications.
-  Theme Material components with the §8 color palette.
+  Theme Material components with the §9 color palette.
 - **WCAG 2.1 Level AA** contrast is the minimum for all color pairings.
   Any new color additions must be WCAG-verified before adoption.
 - **Accessibility**: screen readers, keyboard-only navigation, and system accessibility
   preferences (reduced motion, high contrast) must all be respected.
- 
----
- 
-## §11 — Date, Time & Units
 
-### §11.1 — Date & Time Format Rules
+---
+
+## §12 — Date, Time & Units
+
+### §12.1 — Date & Time Format Rules
 
 | Concern      | Rule                                                             | Example                      |
 |--------------|------------------------------------------------------------------|------------------------------|
 | Date format  | ISO 8601 only: `YYYY-MM-DD`                                      | `2026-03-08`                 |
 | Time format  | 24-hour only: `HH:MM:SS` — AM/PM is **never** permitted          | `14:30:00`                   |
-| Timestamp    | Combined ISO 8601 UTC: `YYYY-MM-DDTHH:MM:SSZ`                   | `2026-03-08T14:30:00Z`       |
-| Timezone     | **UTC always.** The `Z` suffix is mandatory — see §11.2          | `Z` not `+00:00`             |
+| Timestamp    | Combined ISO 8601 UTC: `YYYY-MM-DDTHH:MM:SSZ`                    | `2026-03-08T14:30:00Z`       |
+| Timezone     | **UTC always.** The `Z` suffix is mandatory — see §12.2          | `Z` not `+00:00`             |
 | Duration     | ISO 8601 duration format only                                    | `PT1H30M` not "1h 30m"       |
 | Units        | Metric (SI) primary; imperial in parentheses only if locale requires | `100 km (62 mi)`         |
 
 Apply these conventions to all generated code, documentation, comments, and any
 user-facing strings. Never output AM/PM time, non-ISO dates, or imperial-primary units.
 
-### §11.2 — UTC-Only Timezone Policy (Non-Negotiable)
+### §12.2 — UTC-Only Timezone Policy (Non-Negotiable)
 
 **UTC is the one and only timezone for all stored, transmitted, logged, and
 committed timestamps across every Steelbore project.** This is a non-negotiable
@@ -231,7 +298,7 @@ rule with no exceptions for core data paths.
 | Commit timestamps use UTC | `GIT_COMMITTER_DATE` and `GIT_AUTHOR_DATE` must be UTC when set programmatically. |
 | File metadata written by Steelbore tools | mtime/ctime written by Steelbore tools must be UTC-sourced. |
 
-### §11.3 — Display-Only Local Time (Render Layer Only)
+### §12.3 — Display-Only Local Time (Render Layer Only)
 
 Local time is permitted **only** as an ephemeral render layer in human-facing
 terminal output. It is **never** stored, serialized, transmitted, or logged.
@@ -245,7 +312,7 @@ terminal output. It is **never** stored, serialized, transmitted, or logged.
   4. Never persist or transmit the local-time rendering.
 - JSON/machine output (`--format json/jsonl/yaml/csv`) MUST always use UTC + `Z`.
 
-### §11.4 — Duration Format
+### §12.4 — Duration Format
 
 Durations follow ISO 8601 duration notation:
 
@@ -258,7 +325,7 @@ Durations follow ISO 8601 duration notation:
 Prose forms like "1h 30m", "90 minutes", "1.5 hours" are **forbidden** in
 machine-readable output. They are acceptable in `--help` text only.
 
-### §11.5 — Rust Implementation Guidance
+### §12.5 — Rust Implementation Guidance
 
 When writing Rust code that handles time:
 
@@ -271,17 +338,17 @@ When writing Rust code that handles time:
 | `serde` | Use `#[serde(with = "...")]` or a newtype that enforces UTC on deserialization |
 | `SystemTime` | Acceptable for internal durations; convert to UTC ISO 8601 string before any output |
 | No `NaiveDateTime` in output | `chrono::NaiveDateTime` has no timezone — forbidden in any serialized or logged value |
- 
+
 ---
- 
-## §12 — Attribution, Maintainer & Contact
+
+## §13 — Attribution, Maintainer & Contact
 
 **Maintainer:** Mohamed Hammad
 **Contact:** [Mohamed.Hammad@Steelbore.com](mailto:Mohamed.Hammad@Steelbore.com)
 **Copyright:** (c) 2026 Mohamed Hammad | **License:** GPL-3.0-or-later
 **Website:** [https://Steelbore.com/](https://Steelbore.com/)
 
-### §12.1 — Project Pages
+### §13.1 — Project Pages
 
 Each Steelbore project has a dedicated subdomain following the pattern
 `https://<ProjectName>.Steelbore.com/`. Use the project-specific URL in all
@@ -302,7 +369,7 @@ project-level outputs; use `https://Steelbore.com/` only for umbrella references
 
 When a new project is created, add its subdomain to this table immediately.
 
-### §12.2 — Mandatory Attribution in Project Outputs
+### §13.2 — Mandatory Attribution in Project Outputs
 
 Every Steelbore product **must** surface the following attribution in at least one
 of: `--help` output, `--version` output, README, or About/Info screen.
@@ -344,38 +411,39 @@ https://<ProjectName>.Steelbore.com/
 
 ---
 
-## §13 — Compliance Checklist (Audit Gate)
- 
+## §14 — Compliance Checklist (Audit Gate)
+
 Before finalising **any** Steelbore artifact, mentally verify:
- 
+
 - [ ] **§2** Metallurgical naming convention applied to all new identifiers
 - [ ] **§3.1** Memory safety: Rust used, or ASLR+CFI mitigations documented
 - [ ] **§3.2** Concurrency designed-in; benchmarking planned/documented
 - [ ] **§3.3** Hardened security; PQC readiness addressed
 - [ ] **§4** `GPL-3.0-or-later` license; SPDX headers on software source code files (excluding documents)
-- [ ] **§5.1** POSIX-compliant CLI/system tools
-- [ ] **§6** PFA: no tracking, minimal permissions, local storage default
-- [ ] **§7** CUA + Vim-like key bindings planned/implemented
-- [ ] **§8** Steelbore color palette used; Void Navy background mandatory
-- [ ] **§9** FOSS-licensed fonts only (Share Tech Mono / Inconsolata)
-- [ ] **§10** Material Design UI/UX; WCAG 2.1 AA verified
-- [ ] **§11** ISO 8601 dates; 24h time; UTC-only timestamps with mandatory `Z` suffix; no local-time in stored/transmitted data; ISO 8601 durations; metric units
-- [ ] **§12** Attribution present: maintainer name (`Mohamed Hammad`), contact (`Mohamed.Hammad@Steelbore.com`), and project URL in `--version` / README / About
- 
+- [ ] **§5** Project Posture: README/NOTICE/CONTRIBUTING present; default personal-hobby stance applied; general-use carve-outs declared in subproject README
+- [ ] **§6.1** POSIX-compliant CLI/system tools
+- [ ] **§7** PFA: no tracking, minimal permissions, local storage default
+- [ ] **§8** CUA + Vim-like key bindings planned/implemented
+- [ ] **§9** Steelbore color palette used; Void Navy background mandatory
+- [ ] **§10** FOSS-licensed fonts only (Share Tech Mono / Inconsolata)
+- [ ] **§11** Material Design UI/UX; WCAG 2.1 AA verified
+- [ ] **§12** ISO 8601 dates; 24h time; UTC-only timestamps with mandatory `Z` suffix; no local-time in stored/transmitted data; ISO 8601 durations; metric units
+- [ ] **§13** Attribution present: maintainer name (`Mohamed Hammad`), contact (`Mohamed.Hammad@Steelbore.com`), and project URL in `--version` / README / About
+
 If any item is not applicable to the current artifact type (e.g., color palette
 for a pure Rust library), note it as N/A rather than silently skipping it.
- 
+
 ---
- 
+
 ## Skill Cross-References
- 
+
 | Task                                 | Load this skill             |
 |--------------------------------------|-----------------------------|
 | Writing any Rust code                | `rust-guidelines`           |
 | Generating DOCX / PDF documents      | `steelbore-document-format` |
 | Creating IDE / terminal themes       | `steelbore-theme-factory`   |
 | This skill (all other Steelbore work)| `steelbore-standard` <- you are here |
- 
+
 ---
- 
+
 *--- Forged in Steelbore ---*
