@@ -1,14 +1,15 @@
 ---
 name: steelbore-standard
 description: >
-  The authoritative compliance reference for ALL work on Steelbore projects and subprojects
-  (Zamak, Lattice, Ferrocast, Craton, Ironway, Caliper, Mawaqit, and any future projects).
-  ALWAYS load this skill before writing code, documentation, specifications, architecture
-  decisions, UI designs, naming choices, or any other artifact for a Steelbore project —
-  even if the user doesn't explicitly mention the Standard. If the user mentions "Steelbore",
-  a Steelbore subproject name, or asks you to work on anything in the Steelbore ecosystem,
-  consult this skill immediately. It encodes The Steelbore Standard v1.1 so you never need
-  to ask for it or have it attached to a prompt again.
+  The authoritative compliance reference for ALL work on Steelbore-umbrella projects and
+  subprojects (Zamak, Bravais, Ferrocast, Craton, Ironway, Caliper, Mawaqit, and any future
+  projects). ALWAYS load this skill before writing code, documentation, specifications,
+  architecture decisions, UI designs, naming choices, or any other artifact for a
+  Steelbore-umbrella project — even if the user doesn't explicitly mention the Standard.
+  If the user mentions "Steelbore", a Steelbore subproject name, or asks you to work on
+  anything in the Steelbore ecosystem, consult this skill immediately. It encodes
+  The Steelbore Standard v1.2 so you never need to ask for it or have it attached to a
+  prompt again.
 license: GPL-3.0-or-later
 maintainer: Mohamed Hammad <Mohamed.Hammad@Steelbore.com>
 website: https://Steelbore.com/
@@ -16,45 +17,83 @@ website: https://Steelbore.com/
 
 # The Steelbore Standard — Compliance Reference
 
-**Version:** 1.1 | **Date:** 2026-05-06 | **Author:** Mohamed Hammad
+**Version:** 1.2 | **Date:** 2026-05-11 | **Author:** Mohamed Hammad
 **Maintainer:** Mohamed Hammad | **Contact:** [Mohamed.Hammad@Steelbore.com](mailto:Mohamed.Hammad@Steelbore.com)
 **Copyright:** (c) 2026 Mohamed Hammad | **License:** GPL-3.0-or-later
 **Website:** [https://Steelbore.com/](https://Steelbore.com/)
 
 This skill encodes The Steelbore Standard in full. Apply every applicable section
-to any artifact you produce for a Steelbore project. The 13-point compliance checklist
+to any artifact you produce under the standard. The 13-point compliance checklist
 in §14 is your audit gate — run through it mentally before finalising any output.
+
+**Standard name vs. project naming.** "The Steelbore Standard" is the canonical,
+stable name of *this standard*. It is independent of the projects it currently
+governs and of the umbrella organization name. If individual projects — or the
+umbrella itself — are renamed in the future, the standard retains the name
+"The Steelbore Standard." Versioning of project codenames (see §2) and versioning
+of the standard are separate concerns.
 
 **Changelog:**
 
+- **v1.2 (2026-05-11):** Replaced §2 metallurgical naming convention with Aerospace, Sci-Fi & AI naming (aerospace/astronomy terminology + franchise references from *2001: A Space Odyssey*, *The Matrix*, *Terminator*). Preserved pre-v1.2 metallurgical-era names under §2's Legacy Registry. Added explicit statement that the standard's name — "The Steelbore Standard" — is decoupled from project naming and survives any project or umbrella rename. Renamed `Lattice` to `Bravais` (collision with Lattice OS) in registry and §13.1 subdomain table. Flagged `Mawaqit` as pending rename under the v1.2 convention.
 - **v1.1 (2026-05-06):** Added §5 Project Posture (personal-hobby default, general-use carve-out, required posture files). Renumbered prior §5–§13 to §6–§14. Added posture bullet to compliance checklist.
 - **v1.0 (2026-03-08):** Initial release.
 
 ---
 
-## §2 — Metallurgical Naming Convention
+## §2 — Aerospace, Sci-Fi & AI Naming Convention
 
-All project codenames, module identifiers, and public-facing component names **must**
-come from the domain of metallurgy, materials science, or industrial forging.
+All **new** project codenames, module identifiers, and public-facing component names
+**must** draw from one of the following domains:
 
-| Category  | Examples                        | Domain                  |
-|-----------|---------------------------------|-------------------------|
-| Projects  | ZAMAK, Lattice, Steelbore       | Alloys, Crystal Structs |
-| Modules   | Crucible, Anvil, Temper         | Forging Tools           |
-| Utilities | Quench, Flux, Smelt             | Metallurgical Processes |
-| Releases  | Ingot, Billet, Bloom            | Cast Forms              |
+- **Real aerospace and astronomy** — orbital mechanics terms, propulsion concepts,
+  named missions/programs, stellar objects and phenomena, observatories.
+- **Science-fiction franchises with space / AI / cybernetic themes** —
+  *2001: A Space Odyssey*, *The Matrix*, and *Terminator* are the explicitly
+  endorsed canonical sources. Other franchises (e.g., *Alien*, *Blade Runner*,
+  *Ex Machina*) are acceptable if they fit the space-machine-AI register.
+- **Generic sci-fi / AI vocabulary** — hyperspace, neural, cybernetic, synthetic,
+  sentinel, oracle, daemon, vector, lattice (the lowercase common noun), etc.
 
-**Known project registry:**
-- `Zamak` — Rust bootloader (Limine rewrite)
-- `Lattice` — NixOS flake configuration
-- `Ferrocast` — Rust PowerShell rewrite (16-crate workspace)
-- `Craton` — Rust universal package manager
-- `Ironway` — Rust OpenTTD rewrite
-- `Caliper` — Rust raster-to-vector tracing engine (CLI+TUI)
-- `Mawaqit` — Islamic prayer times app (Flutter + Rust CLI + libmawaqit)
+| Category  | Examples                            | Domain                          |
+|-----------|-------------------------------------|---------------------------------|
+| Projects  | Apollo, Discovery, Skynet, Trinity  | Missions / Ships / AI Machines  |
+| Modules   | Apogee, HAL, Cortex, Sentinel       | Subsystems / AI Cores           |
+| Utilities | Boost, Throttle, Trace, Telemetry   | Operational Verbs / Telemetry   |
+| Releases  | Vega, Pulsar, Quasar, Nebula        | Stellar Phenomena               |
 
-When proposing new names (modules, utilities, releases), always draw from metallurgy.
-Reject any proposed name that doesn't fit this convention.
+Names must be **fitting for space-related and futuristic AI machines** — the
+test is whether the name would feel at home on the hull of a spacecraft or in
+the boot banner of an AI machine. Reject proposed names that don't pass this test.
+
+### §2.1 — Legacy Metallurgical Registry (pre-v1.2)
+
+Projects named before the v1.2 convention drew from metallurgy, materials science,
+and industrial forging. These names are **preserved as-is** unless explicitly
+renamed by the maintainer. The v1.2 convention applies prospectively — no forced
+back-rename.
+
+| Codename    | Status                | Description                                                    |
+|-------------|-----------------------|----------------------------------------------------------------|
+| `Steelbore` | Active (umbrella)     | Umbrella organization and standard name                        |
+| `Zamak`     | Active                | Rust bootloader (Limine rewrite)                               |
+| `Bravais`   | Active (renamed)      | NixOS flake configuration. Renamed from `Lattice` due to collision with Lattice OS. `Bravais` is still a metallurgical-era name (Bravais lattice) and predates the v1.2 convention. |
+| `Ferrocast` | Active                | Rust PowerShell rewrite (16-crate workspace)                   |
+| `Craton`    | Active                | Rust universal package manager                                 |
+| `Ironway`   | Active                | Rust OpenTTD rewrite                                           |
+| `Caliper`   | Active                | Rust raster-to-vector tracing engine (CLI+TUI)                 |
+| `Mawaqit`   | **Pending rename**    | Islamic prayer times app (Flutter + Rust CLI + libmawaqit). To be renamed under the v1.2 aerospace/sci-fi/AI convention. |
+
+Existing legacy-named projects MAY be renamed under the v1.2 convention at the
+maintainer's discretion — renames are optional. When a rename happens, update
+this table and §13.1's subdomain table in the same commit.
+
+### §2.2 — Skill IDs are functional, not codenamed
+
+Skill directory names and SKILL.md `name` fields are **functional identifiers**
+(e.g., `steelbore-standard`, `steelbore-document-format`) and are not subject to
+the §2 codename convention. §2 reserves codenames for projects/modules/utilities/releases,
+not for skill identifiers.
 
 ---
 
@@ -363,7 +402,7 @@ project-level outputs; use `https://Steelbore.com/` only for umbrella references
 | Craton           | https://Craton.Steelbore.com/          |
 | Ironway          | https://Ironway.Steelbore.com/         |
 | Zamak            | https://Zamak.Steelbore.com/           |
-| Lattice          | https://Lattice.Steelbore.com/         |
+| Bravais          | https://Bravais.Steelbore.com/         |
 | Mawaqit          | https://Mawaqit.Steelbore.com/         |
 | Flux             | https://Flux.Steelbore.com/            |
 
@@ -415,7 +454,7 @@ https://<ProjectName>.Steelbore.com/
 
 Before finalising **any** Steelbore artifact, mentally verify:
 
-- [ ] **§2** Metallurgical naming convention applied to all new identifiers
+- [ ] **§2** Aerospace/Sci-Fi/AI naming convention applied to all **new** identifiers; legacy (pre-v1.2) names preserved unless explicitly renamed
 - [ ] **§3.1** Memory safety: Rust used, or ASLR+CFI mitigations documented
 - [ ] **§3.2** Concurrency designed-in; benchmarking planned/documented
 - [ ] **§3.3** Hardened security; PQC readiness addressed
