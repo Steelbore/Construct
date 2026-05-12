@@ -162,17 +162,18 @@ Each slide becomes one ATX `## Slide N: <title>` heading. Bullets become a GFM b
 
 ## Slide 2: Construct (the rebrand)
 
-- Single canonical install at `~/.agents/skills/`
-- Symlink fan-out covers Claude, Codex, generic AI tools
-- Gemini reads from canonical path directly — no symlink
+- Home Manager provisions per-harness skill paths declaratively
+- Per-skill symlinks chain through the Nix store to `/steelbore/construct/<skill>`
+- Paths covered: `~/.claude/skills/`, `~/.codex/skills/`, `~/.ai/skills/`, `~/.agent/skills/`
 
 > Speaker notes: Matrix reference for the brand. Walk through the
 > symlink topology diagram in slide 3 before clicking through.
 
 ## Slide 3: Topology
 
-![Symlink fan-out diagram showing ~/.agents/skills as the root, with
- four symlinks branching to the per-harness conventional paths.](slide-3-topology.png)
+![Symlink fan-out diagram showing Home Manager at the root, with
+ per-harness skill paths each holding per-skill symlinks that
+ resolve through the Nix store to /steelbore/construct/.](slide-3-topology.png)
 ```
 
 **Image slides** include a markdown image link with relative path (the image file ships alongside the deck) and alt text describing what's shown. Don't try to inline base64-encoded images — bloats the diff and most agents can't read them.
