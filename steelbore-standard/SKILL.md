@@ -272,10 +272,6 @@ No alternative background is permitted. This is non-negotiable.
 For document/file generation → load the `steelbore-document-format` skill.
 For IDE/terminal themes → load the `steelbore-theme-factory` skill.
 
-> ⚠️ Note: The `steelbore-brand-guidelines` skill contains **outdated color and font
-> data** that conflicts with the Standard. The values in §9 and §10 of this skill are
-> authoritative. Do not use the brand-guidelines skill for color or font reference.
-
 ---
 
 ## §10 — Typography (FOSS-Licensed Fonts Only)

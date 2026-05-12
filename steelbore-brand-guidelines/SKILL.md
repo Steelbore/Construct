@@ -12,7 +12,7 @@ website: https://Steelbore.com/
 **Copyright:** (c) 2026 Mohamed Hammad | **License:** GPL-3.0-or-later
 **Website:** [https://Steelbore.com/](https://Steelbore.com/)
 
-> **Source of truth:** The Steelbore Standard v1.0 (§8 Colors, §9 Typography).
+> **Source of truth:** The Steelbore Standard v1.2 (§9 Colors, §10 Typography).
 > All values here are canonical. Do not use any other color or font values for Steelbore artifacts.
 
 ## Color Palette (WCAG 2.1 AA Compliant)
