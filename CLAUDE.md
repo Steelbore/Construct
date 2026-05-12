@@ -20,6 +20,7 @@ audit gate.
 <skill-name>/
 ├── SKILL.md           # frontmatter (name, description, license, maintainer, website) + body
 ├── LICENSE | LICENSE.md  # GPL-3.0-or-later (rust-guidelines is MIT — adapted from Microsoft)
+├── CREDITS.md         # required when the skill builds on third-party work (Standard §13.3)
 ├── references/        # optional; loaded on demand by the agent
 └── assets/            # optional; templates, JSON catalogs, etc.
 ```
@@ -32,18 +33,24 @@ must stay in sync.
 ## Bundling (.zip and .skill)
 
 Each skill ships as two bundles at the repo root: `<name>.zip` and
-`<name>.skill`. They contain only `SKILL.md`, `LICENSE`, and `references/`
-(plus `assets/` where present) — never tooling, generator scripts, or raw
-upstream sources. Auxiliary inputs that don't belong in the shipped skill live
-in `Excluded/` (e.g., `Rust-Guidelines.{md,txt}`, `skill.ps1`).
+`<name>.skill`. They contain only `SKILL.md`, `LICENSE`, `CREDITS.md`, and
+`references/` (plus `assets/` where present) — never tooling, generator
+scripts, or raw upstream sources. Auxiliary inputs that don't belong in the
+shipped skill live in `Excluded/` (e.g., `Rust-Guidelines.{md,txt}`,
+`skill.ps1`).
 
 Rebuild pattern (from `.claude/settings.local.json`):
 
 ```sh
 rm -f <name>.zip <name>.skill
-zip -qr  <name>.zip   <name>/SKILL.md <name>/LICENSE <name>/references
-zip -qrD <name>.skill <name>/SKILL.md <name>/LICENSE <name>/references
+zip -qr  <name>.zip   <name>/SKILL.md <name>/LICENSE <name>/CREDITS.md <name>/references
+zip -qrD <name>.skill <name>/SKILL.md <name>/LICENSE <name>/CREDITS.md <name>/references
 ```
+
+Include each argument only when that file/dir exists in the skill — LICENSE
+filenames vary (`LICENSE` vs `LICENSE.md`), `CREDITS.md` appears only where
+§13.3 triggers fire (currently `rust-guidelines` and `steelbore-cli-preference`),
+and `references/` is optional.
 
 The `.skill` bundle uses `-D` to drop directory entries; the `.zip` keeps them.
 Verify with `unzip -l <name>.zip` before committing. After editing any file
@@ -59,12 +66,14 @@ is mechanical — apply it after **any** edit inside a `<skill-name>/` directory
 1. **Rebuild both bundles** for the changed skill:
    ```sh
    rm -f <name>.zip <name>.skill
-   zip -qr  <name>.zip   <name>/SKILL.md <name>/LICENSE <name>/references
-   zip -qrD <name>.skill <name>/SKILL.md <name>/LICENSE <name>/references
+   zip -qr  <name>.zip   <name>/SKILL.md <name>/LICENSE <name>/CREDITS.md <name>/references
+   zip -qrD <name>.skill <name>/SKILL.md <name>/LICENSE <name>/CREDITS.md <name>/references
    ```
    Add `<name>/assets` to both lines if the skill has an `assets/` dir.
-   Omit `<name>/LICENSE` or `<name>/references` if the skill doesn't have them
-   (`steelbore-standard` is SKILL.md-only, for example).
+   Omit any argument the skill doesn't have — `steelbore-standard` is
+   SKILL.md-only; LICENSE filenames vary (`LICENSE` vs `LICENSE.md`);
+   `CREDITS.md` exists only where §13.3 applies (`rust-guidelines`,
+   `steelbore-cli-preference`). Run `ls <name>/` first when in doubt.
 2. **Stage** the skill directory **and** both bundles in the same commit —
    never separately.
 3. **Commit with UTC timestamps**:
