@@ -444,6 +444,54 @@ https://<ProjectName>.Steelbore.com/
   "website": "https://<ProjectName>.Steelbore.com/"
   ```
 
+### §13.3 — Third-Party Attribution
+
+Steelbore artifacts must give credit where credit is due. When a project
+or skill **substantially builds on third-party work**, that credit appears
+in a `CREDITS.md` at the artifact's root — `<project-root>/CREDITS.md` for
+projects, `<skill-name>/CREDITS.md` for skills.
+
+`CREDITS.md` is the inbound counterpart to §13.2's outbound attribution:
+§13.2 tells consumers who maintains Steelbore; §13.3 tells consumers whose
+work Steelbore stands on.
+
+**Triggers** (any one obligates a `CREDITS.md`):
+
+- Content adapted, derived, or copied verbatim from an external source
+  under any license (permissive or copyleft).
+- A library, framework, or specification whose ideas or implementation
+  form a substantial conceptual basis for the artifact, beyond routine
+  dependency use.
+- Named prior art, research, or design work whose insights were borrowed.
+
+**Not triggered by** (license metadata alone suffices):
+
+- Routine package-manager dependencies whose `LICENSE` files are surfaced
+  mechanically via Cargo, npm, pip, Nix, etc.
+- Well-known standards and specifications (POSIX, RFC, ISO, GFM, ODF,
+  OOXML) that the artifact conforms to but does not redistribute.
+- Public-domain conventions and common idioms.
+
+**Required content per credited work:**
+
+| Field      | Required | Example                                          |
+|------------|----------|--------------------------------------------------|
+| Name       | Yes      | `Microsoft Pragmatic Rust Guidelines`            |
+| Author(s)  | Yes      | `Microsoft Corporation`                          |
+| License    | Yes      | `MIT License`                                    |
+| Source URL | Yes      | `https://github.com/microsoft/rust-guidelines`   |
+| Scope      | Yes      | One-line description of what was adapted/used    |
+
+A skill MAY keep a deeper, scope-limited attribution file inside its
+`references/` directory (typically `references/ATTRIBUTION.md`) when the
+credit applies specifically to adapted reference content. The root
+`CREDITS.md` remains canonical and should link down to any such deeper
+file.
+
+SPDX headers (§4) cover license compliance mechanically; `CREDITS.md` is
+the human-readable narrative — who, what, and how the upstream work
+shaped the Steelbore artifact.
+
 ---
 
 ## §14 — Compliance Checklist (Audit Gate)
@@ -464,6 +512,7 @@ Before finalising **any** Steelbore artifact, mentally verify:
 - [ ] **§11** Material Design UI/UX; WCAG 2.1 AA verified
 - [ ] **§12** ISO 8601 dates; 24h time; UTC-only timestamps with mandatory `Z` suffix; no local-time in stored/transmitted data; ISO 8601 durations; metric units
 - [ ] **§13** Attribution present: maintainer name (`Mohamed Hammad`), contact (`Mohamed.Hammad@Steelbore.com`), and project URL in `--version` / README / About
+- [ ] **§13.3** Third-party work credited in `CREDITS.md` at project/skill root when triggers apply; deeper `references/ATTRIBUTION.md` present where reference content is adapted from external sources
 
 If any item is not applicable to the current artifact type (e.g., color palette
 for a pure Rust library), note it as N/A rather than silently skipping it.

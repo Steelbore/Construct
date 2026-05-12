@@ -48,9 +48,10 @@ Every skill follows the same shape:
 <skill-name>/
 ├── SKILL.md           # Frontmatter + the agent-facing instructions
 ├── LICENSE.md         # GPL-3.0-or-later (per Steelbore Standard §4)
+├── CREDITS.md         # Required when the skill builds on third-party work (Standard §13.3)
 └── references/        # Optional; consulted only when depth is needed
     ├── <topic>.md
-    └── ATTRIBUTION.md # Required when references are adapted from external sources
+    └── ATTRIBUTION.md # Optional deeper credit file for adapted references
 ```
 
 Skills are also distributed as `<skill-name>.skill` bundles (zipped) at the
