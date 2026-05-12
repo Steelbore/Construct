@@ -224,6 +224,29 @@ for core functionality.
 Crypto subsystems must have migration paths to post-quantum algorithms.
 Current implementations should use hybrid schemes where library support exists.
 
+### §6.3 — Signed & Verified Commits (Non-Negotiable)
+
+Every commit pushed to a Steelbore-controlled Git remote **must** be
+cryptographically signed and show "Verified" on the hosting platform's
+commit/PR view (GitHub today; Gitway or any future Steelbore host inherits
+the same rule).
+
+**Mandatory rules — violation blocks shipping:**
+
+| Rule | Detail |
+|------|--------|
+| All commits signed | `commit.gpgsign=true` configured globally. SSH signing (`gpg.format=ssh`) is the current default; GPG is acceptable. The signing key MUST be registered as a **Signing** key on the hosting platform — Authentication-only keys do not validate signatures. |
+| Hosting-platform "Verified" required | Every commit on a Steelbore remote must show "Verified" on the platform's commit/PR view. Unsigned or "Unverified" commits MUST be remediated (re-signed via rebase or amend by the original author) before merge to a default branch. |
+| Programmatic commits signed too | Bots, CI pipelines, scripted commits, and assistant-driven commits inherit the same rule — no `--no-gpg-sign`, no signing-disabled subshells. The signing pipeline runs unattended. |
+| Rewrites preserve signatures | Rebase, amend, cherry-pick, and squash MUST re-sign each resulting commit. Don't push history that lost signatures through rewriting. |
+| Local verification is best-effort | `git log --show-signature` may report "No signature" on a given host when `~/.ssh/allowed_signers` is not populated — this is a local-verifier gap, not a signing failure. The hosting platform's "Verified" badge is authoritative. |
+
+**Algorithm note:** Ed25519 SSH signing is the current default. §6.2 calls
+for PQC readiness across the cryptographic surface; commit-signing
+algorithm migration is gated on hosting-platform support for post-quantum
+key formats. When GitHub (or Steelbore's own Gitway) accepts PQC signing
+keys, Steelbore commits migrate accordingly.
+
 ---
 
 ## §7 — Privacy-Friendly Application (PFA) Policy
@@ -513,6 +536,7 @@ Before finalising **any** Steelbore artifact, mentally verify:
 - [ ] **§12** ISO 8601 dates; 24h time; UTC-only timestamps with mandatory `Z` suffix; no local-time in stored/transmitted data; ISO 8601 durations; metric units
 - [ ] **§13** Attribution present: maintainer name (`Mohamed Hammad`), contact (`Mohamed.Hammad@Steelbore.com`), and project URL in `--version` / README / About
 - [ ] **§13.3** Third-party work credited in `CREDITS.md` at project/skill root when triggers apply; deeper `references/ATTRIBUTION.md` present where reference content is adapted from external sources
+- [ ] **§6.3** All commits to Steelbore Git remotes cryptographically signed and showing "Verified" on the hosting platform; rewrites preserve signatures; programmatic and assistant-driven commits signed too
 
 If any item is not applicable to the current artifact type (e.g., color palette
 for a pure Rust library), note it as N/A rather than silently skipping it.
