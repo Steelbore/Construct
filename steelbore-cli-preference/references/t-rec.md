@@ -10,17 +10,17 @@ Terminal recorder that outputs animated GIF or MP4 directly — not just cast fi
 |------|---------|
 | `-o FILE` / `--output FILE` | Output (extension picks format) |
 | `-m` / `--video` | Produce MP4 (needs ffmpeg) |
-| `-d MS` / `--decor MS` | Decoration / border |
+| `-d MS` / `--decor MS` | Decoration / border (`shadow`, `none`) |
+| `-b` / `--bg` | Background color (`white`, `black`, `transparent`) |
 | `-q` / `--quiet` | No intro countdown |
 | `-n` / `--natural` | Natural typing speed |
-| `-l` / `--end-pause` | Freeze last frame |
+| `-e` / `--end-pause` | Freeze last frame |
 | `-s` / `--start-pause` | Freeze first frame |
-| `-b` / `--bg` | Dark/light background |
 
 ## Examples
 1. Record a session to GIF: `t-rec -o demo.gif`
 2. MP4 output: `t-rec -m -o demo.mp4`
-3. With pauses at start and end: `t-rec -s 2s -l 2s -o demo.gif`
+3. With pauses at start and end: `t-rec -s 2s -e 2s -o demo.gif`
 
 ## Gotchas
 - Records a single terminal window — don't resize mid-recording.

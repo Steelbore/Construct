@@ -31,7 +31,7 @@ keymap:
 ## Examples
 1. Run with systemd user service: `systemctl --user enable --now xremap`
 2. Ad-hoc: `sudo xremap ~/.config/xremap/config.yml`
-3. Validate config: `xremap --config config.yml --check` (if supported)
+3. Auto-reload on config changes: `xremap --watch ~/.config/xremap/config.yml`
 
 ## Gotchas
 - Needs access to `/dev/input/event*` — root or `input` group + `uinput` module.

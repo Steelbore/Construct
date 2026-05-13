@@ -12,6 +12,7 @@ Saves a complete web page as a single self-contained HTML file (CSS/JS/images/fo
 | `-a` / `--no-audio` | Strip audio |
 | `-v` / `--no-video` | Strip video |
 | `-i` / `--no-images` | Strip images |
+| `-j` / `--no-js` | Strip JavaScript |
 | `-s` / `--silent` | Silent |
 | `-F` / `--isolate` | CSP that blocks network requests in saved file |
 | `-M` / `--no-metadata` | Strip metadata comment |
