@@ -17,7 +17,7 @@ website: https://Steelbore.com/
 
 # The Steelbore Standard — Compliance Reference
 
-**Version:** 1.2 | **Date:** 2026-05-11 | **Author:** Mohamed Hammad
+**Version:** 1.2 | **Date:** 2026-05-13 | **Author:** Mohamed Hammad
 **Maintainer:** Mohamed Hammad | **Contact:** [Mohamed.Hammad@Steelbore.com](mailto:Mohamed.Hammad@Steelbore.com)
 **Copyright:** (c) 2026 Mohamed Hammad | **License:** GPL-3.0-or-later
 **Website:** [https://Steelbore.com/](https://Steelbore.com/)
@@ -35,6 +35,7 @@ of the standard are separate concerns.
 
 **Changelog:**
 
+- **v1.2 — registry sync (2026-05-13):** Added `Anvil`, `Ferrite_OS`, `Flux`, `Forge`, and `Pearlite` to §2.1 (metallurgical legacy names confirmed from PROJECTS.md cross-check; Anvil and Flux were explicitly noted there as not previously registered). Extended §13.1 subdomain table with `Anvil`, `Construct`, `Ferrite`, `Forge`, `Ginx`, `Loran`, and `Pearlite` (all have active GitHub repositories under the Steelbore organisation).
 - **v1.2 (2026-05-11):** Replaced §2 metallurgical naming convention with Aerospace, Sci-Fi & AI naming (aerospace/astronomy terminology + franchise references from *2001: A Space Odyssey*, *The Matrix*, *Terminator*). Preserved pre-v1.2 metallurgical-era names under §2's Legacy Registry. Added explicit statement that the standard's name — "The Steelbore Standard" — is decoupled from project naming and survives any project or umbrella rename. Renamed `Lattice` to `Bravais` (collision with Lattice OS) in registry and §13.1 subdomain table. Flagged `Mawaqit` as pending rename under the v1.2 convention.
 - **v1.1 (2026-05-06):** Added §5 Project Posture (personal-hobby default, general-use carve-out, required posture files). Renumbered prior §5–§13 to §6–§14. Added posture bullet to compliance checklist.
 - **v1.0 (2026-03-08):** Initial release.
@@ -83,6 +84,11 @@ back-rename.
 | `Ironway`   | Active                | Rust OpenTTD rewrite                                           |
 | `Caliper`   | Active                | Rust raster-to-vector tracing engine (CLI+TUI)                 |
 | `Mawaqit`   | **Pending rename**    | Islamic prayer times app (Flutter + Rust CLI + libmawaqit). To be renamed under the v1.2 aerospace/sci-fi/AI convention. |
+| `Anvil`     | Active                | Rust workspace with benches and CHANGELOG; metallurgical legacy name. |
+| `Ferrite_OS`| Active                | Custom OS and DOS-emulation experiments; ferrite is a metallurgical iron compound. |
+| `Flux`      | Active                | Rust workspace with CHANGELOG; metallurgical legacy name. |
+| `Forge`     | Active                | Production flavor tooling workspace (`forge-cli`, `forge-build`, `forge-activate`); metallurgical name. |
+| `Pearlite`  | Active                | Rust workspace with extended audit tooling; pearlite is a steel microstructure. |
 
 Existing legacy-named projects MAY be renamed under the v1.2 convention at the
 maintainer's discretion — renames are optional. When a rename happens, update
@@ -424,6 +430,13 @@ project-level outputs; use `https://Steelbore.com/` only for umbrella references
 | Bravais          | https://Bravais.Steelbore.com/         |
 | Mawaqit          | https://Mawaqit.Steelbore.com/         |
 | Flux             | https://Flux.Steelbore.com/            |
+| Anvil            | https://Anvil.Steelbore.com/           |
+| Construct        | https://Construct.Steelbore.com/       |
+| Ferrite          | https://Ferrite.Steelbore.com/         |
+| Forge            | https://Forge.Steelbore.com/           |
+| Ginx             | https://Ginx.Steelbore.com/            |
+| Loran            | https://Loran.Steelbore.com/           |
+| Pearlite         | https://Pearlite.Steelbore.com/        |
 
 When a new project is created, add its subdomain to this table immediately.
 
