@@ -75,7 +75,13 @@ is mechanical — apply it after **any** edit inside a `<skill-name>/` directory
    `CREDITS.md` exists only where §13.3 applies (`rust-guidelines`,
    `steelbore-cli-preference`). Run `ls <name>/` first when in doubt.
 2. **Stage** the skill directory **and** both bundles in the same commit —
-   never separately.
+   never separately. Always stage by explicit name:
+   ```sh
+   git add <name>/SKILL.md <name>.zip <name>.skill
+   ```
+   Never use `git add -A` or `git add .` — other `.skill` files at the
+   repo root carry pre-existing uncommitted changes from prior normalization
+   passes and must not be swept into unrelated commits.
 3. **Commit with UTC timestamps**:
    ```sh
    TZ=UTC GIT_COMMITTER_DATE="$(TZ=UTC date)" \
@@ -151,6 +157,11 @@ The assistant performs no `rsync`, no symlink setup, and no
 - `Chat.txt` is a session export and is gitignored — never commit it.
 - `Excluded/` is the holding pen for inputs that produce skill content but must
   not ship with it. Don't reference it from inside any `SKILL.md`.
+- **Pre-existing dirty `.skill` files** (`steelbore-agentic-cli.skill`,
+  `steelbore-cli-shell.skill`, `steelbore-cli-standard.skill`,
+  `steelbore-missing-pkg.skill`) carry uncommitted changes from prior `-D`
+  normalization passes. Do not commit them unless the task explicitly targets
+  those files.
 
 ## Installation (what consumers do)
 
