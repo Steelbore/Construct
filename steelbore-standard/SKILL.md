@@ -80,7 +80,7 @@ back-rename.
 | `Zamak`     | Active                | Rust bootloader (Limine rewrite)                               |
 | `Bravais`   | Active (renamed)      | NixOS flake configuration. Renamed from `Lattice` due to collision with Lattice OS. `Bravais` is still a metallurgical-era name (Bravais lattice) and predates the v1.2 convention. |
 | `Ferrocast` | Active                | Rust PowerShell rewrite (16-crate workspace)                   |
-| `Craton`    | Active                | Rust universal package manager                                 |
+| `Craton`    | Registered; not started | Rust universal package manager. Codename reserved in the Standard; no directory or code on disk yet. |
 | `Ironway`   | Active                | Rust OpenTTD rewrite                                           |
 | `Caliper`   | Active                | Rust raster-to-vector tracing engine (CLI+TUI)                 |
 | `Mawaqit`   | **Pending rename**    | Islamic prayer times app (Flutter + Rust CLI + libmawaqit). To be renamed under the v1.2 aerospace/sci-fi/AI convention. |
